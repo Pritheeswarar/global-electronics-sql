@@ -3,7 +3,7 @@ USE [Global_Electronics];
 
 /* Base inputs */
 DECLARE @schema sysname = N'raw';
-DECLARE @table  sysname = N'Stores';
+DECLARE @table  sysname = N'Exchange_Rates';
 -- <<< EDIT to the table you want to profile
 DECLARE @full   nvarchar(400) = QUOTENAME(@schema) + N'.' + QUOTENAME(@table);
 

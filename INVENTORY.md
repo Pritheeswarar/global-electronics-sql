@@ -70,3 +70,14 @@
 - No columns have >=20% nulls (max 1.49% in Square_Meters).
 - StoreKey is a strong primary key candidate (distinct count = row_count).
 
+## Column profile — raw.Exchange_Rates
+
+| column_name | data_type | is_nullable | row_count | nulls | null_pct | distinct_count | min_value | max_value | avg_len | max_len |
+|-------------|-----------|-------------|-----------|-------|----------|----------------|-----------|-----------|---------|---------|
+| Currency | nvarchar | 0 | 11,215 | 0 | 0.00 | 5 |  |  | 3.00 | 3 |
+| Date | date | 0 | 11,215 | 0 | 0.00 | 2,243 | 2015-01-01 00:00:00.0000000 | 2021-02-20 00:00:00.0000000 |  |  |
+| Exchange | float | 0 | 11,215 | 0 | 0.00 | 3,473 | 0.6284999847 | 1.7252999544 |  |  |
+
+- 5 distinct 3-letter currency codes; no invalid or malformed codes (0 invalid rows).
+- Date coverage is continuous from 2015-01-01 to 2021-02-20 (2,243 distinct dates, 0 missing days).
+
