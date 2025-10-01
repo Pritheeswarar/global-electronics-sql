@@ -2,5 +2,9 @@
   "files.eol": "\n",
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
-  "files.associations": { "*.sql": "sql" }
+  "files.associations": { "*.sql": "sql" },
+  "[sql]": {
+    "editor.defaultFormatter": "ms-mssql.mssql",
+    "editor.formatOnSave": true
+  }
 }
