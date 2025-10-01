@@ -56,3 +56,17 @@
 
 - No columns exceed 20% nulls (highest is Unit_Cost_USD at only 0.56%).
 - Monetary ranges look plausible (no negative or zero prices; costs start above 0 and prices up to 3,199.99).
+
+## Column profile — raw.Stores
+
+| column_name | data_type | is_nullable | row_count | nulls | null_pct | distinct_count | min_value | max_value | avg_len | max_len |
+|-------------|-----------|-------------|-----------|-------|----------|----------------|-----------|-----------|---------|---------|
+| Country | nvarchar | 0 | 67 | 0 | 0.00 | 9 |  |  | 10.07 | 14 |
+| Open_Date | date | 0 | 67 | 0 | 0.00 | 25 | 2005-03-04 00:00:00.0000000 | 2019-03-05 00:00:00.0000000 |  |  |
+| Square_Meters | smallint | 1 | 67 | 1 | 1.49 | 36 | 245.0000000000 | 2105.0000000000 |  |  |
+| State | nvarchar | 0 | 67 | 0 | 0.00 | 67 |  |  | 10.52 | 28 |
+| StoreKey | tinyint | 0 | 67 | 0 | 0.00 | 67 | 0.0000000000 | 66.0000000000 |  |  |
+
+- No columns have >=20% nulls (max 1.49% in Square_Meters).
+- StoreKey is a strong primary key candidate (distinct count = row_count).
+
