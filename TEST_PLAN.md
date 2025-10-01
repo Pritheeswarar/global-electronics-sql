@@ -123,3 +123,16 @@ Profile recap: 5 distinct currencies; dates 2015-01-01 → 2021-02-20; exchange 
 
 - Confirm if `Delivery_Date` nulls indicate in-store pickup or missing shipments; adjust reasonableness rules accordingly.  
 - Confirm any additional status fields (if present) to refine inclusions/exclusions for KPI calculations.
+
+---
+
+## Run log — Uniqueness tests
+
+| scope | test_name | status | fail_count | sample_offenders |
+|-------|-----------|--------|------------|------------------|
+| raw.Customers | Uniqueness: (CustomerKey) | PASS | 0 |  |
+| raw.Exchange_Rates | Uniqueness: (Currency, Date) | PASS | 0 |  |
+| raw.Products | Uniqueness: (ProductKey) | PASS | 0 |  |
+| raw.Sales | Uniqueness: (Order_Number, Line_Item) | PASS | 0 |  |
+| raw.Stores | Uniqueness: (StoreKey) | PASS | 0 |  |
+
