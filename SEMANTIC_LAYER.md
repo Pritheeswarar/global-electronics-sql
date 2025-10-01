@@ -137,6 +137,12 @@
 - line_revenue_usd (computed: quantity * unit_price_usd)
 **Join Rules:** inner join to products and stores (drop unmatched).
 
+### Build log — marts.v_sales_enriched
+
+- Compiled: ✅
+- Columns: order_number, line_item, order_date, delivery_date, customer_key, product_key, store_key, quantity, currency_code, product_name, brand, category, subcategory, unit_price_usd, state, country, line_revenue_usd
+- Row count: (pending execution) — should equal stage.v_sales_lines (62,884)
+
  
 ### marts.v_sales_daily_geo
 
