@@ -38,3 +38,21 @@
 | State | nvarchar | 0 | 15,266 | 0 | 0.00 | 512 |  |  | 10.08 | 28 |
 | State_Code | nvarchar | 0 | 15,266 | 0 | 0.00 | 468 |  |  | 3.18 | 28 |
 | Zip_Code | nvarchar | 1 | 15,266 | 0 | 0.00 | 9,505 |  |  | 5.48 | 8 |
+
+## Column profile — raw.Products
+
+| column_name | data_type | is_nullable | row_count | nulls | null_pct | distinct_count | min_value | max_value | avg_len | max_len |
+|-------------|-----------|-------------|-----------|-------|----------|----------------|-----------|-----------|---------|---------|
+| Brand | nvarchar | 0 | 2,517 | 0 | 0.00 | 11 |  |  | 10.68 | 20 |
+| Category | nvarchar | 0 | 2,517 | 0 | 0.00 | 8 |  |  | 13.85 | 29 |
+| CategoryKey | tinyint | 0 | 2,517 | 0 | 0.00 | 8 | 1.0000000000 | 8.0000000000 |  |  |
+| Color | nvarchar | 0 | 2,517 | 0 | 0.00 | 16 |  |  | 4.92 | 11 |
+| Product_Name | nvarchar | 0 | 2,517 | 0 | 0.00 | 2,517 |  |  | 40.68 | 83 |
+| ProductKey | smallint | 0 | 2,517 | 0 | 0.00 | 2,517 | 1.0000000000 | 2,517.0000000000 |  |  |
+| Subcategory | nvarchar | 0 | 2,517 | 0 | 0.00 | 32 |  |  | 14.71 | 32 |
+| SubcategoryKey | smallint | 0 | 2,517 | 0 | 0.00 | 32 | 101.0000000000 | 808.0000000000 |  |  |
+| Unit_Cost_USD | money | 1 | 2,517 | 14 | 0.56 | 479 | 0.4800000000 | 960.8200000000 |  |  |
+| Unit_Price_USD | money | 1 | 2,517 | 0 | 0.00 | 426 | 0.9500000000 | 3,199.9900000000 |  |  |
+
+- No columns exceed 20% nulls (highest is Unit_Cost_USD at only 0.56%).
+- Monetary ranges look plausible (no negative or zero prices; costs start above 0 and prices up to 3,199.99).
