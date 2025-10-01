@@ -1,0 +1,2 @@
+-- View: stage.v_stores
+-- Purpose: Store dimension standardized (contract only). Do NOT implement SQL yet

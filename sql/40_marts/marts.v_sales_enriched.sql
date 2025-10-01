@@ -1,0 +1,2 @@
+-- View: marts.v_sales_enriched
+-- Purpose: Enrich sales lines with product and store attributes and derived line_revenue_usd (contract only). Do NOT implement SQL yet

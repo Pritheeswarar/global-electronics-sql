@@ -1,0 +1,2 @@
+-- View: stage.v_customers
+-- Purpose: Customer dimension pass-through with optional columns (contract only). Do NOT implement SQL yet

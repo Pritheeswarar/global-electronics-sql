@@ -1,0 +1,2 @@
+-- View: stage.v_exchange_rates
+-- Purpose: Exchange rates normalized (contract only). Do NOT implement SQL yet

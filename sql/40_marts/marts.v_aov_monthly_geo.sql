@@ -1,0 +1,2 @@
+-- View: marts.v_aov_monthly_geo
+-- Purpose: Average order value by month and geography (contract only). Do NOT implement SQL yet

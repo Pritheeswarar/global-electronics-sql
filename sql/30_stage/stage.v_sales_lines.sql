@@ -1,0 +1,2 @@
+-- View: stage.v_sales_lines
+-- Purpose: Enrich line-level sales with standardized column names (contract only). Do NOT implement SQL yet

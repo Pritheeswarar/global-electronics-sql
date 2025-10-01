@@ -1,0 +1,2 @@
+-- View: marts.v_sales_daily_geo
+-- Purpose: Daily rollup by geography & product category (contract only). Do NOT implement SQL yet

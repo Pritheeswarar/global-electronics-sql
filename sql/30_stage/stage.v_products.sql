@@ -1,0 +1,2 @@
+-- View: stage.v_products
+-- Purpose: Product dimension columns renamed/cast (contract only). Do NOT implement SQL yet

@@ -1,0 +1,2 @@
+-- View: marts.v_delivery_stats_geo_monthly
+-- Purpose: Delivery-time KPIs for delivered lines monthly by geo (contract only). Do NOT implement SQL yet

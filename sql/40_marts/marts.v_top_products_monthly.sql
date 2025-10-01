@@ -1,0 +1,2 @@
+-- View: marts.v_top_products_monthly
+-- Purpose: Product performance per month with revenue rank (contract only). Do NOT implement SQL yet
