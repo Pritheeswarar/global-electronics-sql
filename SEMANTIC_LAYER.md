@@ -27,6 +27,11 @@
 - Keep all rows; no filters here.
 - Validate delivery_date >= order_date where not null (already tested) but do not drop rows.
 
+### Build log — stage.v_sales_lines
+- Compiled: ✅
+- Sample columns: order_number, line_item, order_date, delivery_date, customer_key, product_key, store_key, quantity, currency_code
+- Row count: 62884
+
 ### stage.v_products
 **Grain:** one row per product  
 **Depends on:** raw.Products  
