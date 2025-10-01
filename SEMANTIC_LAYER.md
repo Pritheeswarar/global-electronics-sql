@@ -62,6 +62,11 @@
 - country (nvarchar, if present)
 **Rules:** pass-through/rename only; optional columns allowed.
 
+### Build log — stage.v_customers
+- Compiled: ✅
+- Columns: customer_key, name, gender, city, state_code, state, country, birthdate
+- Row count: 15266 | Distinct customer_key: 15266
+
 ### stage.v_stores
 **Grain:** one row per store  
 **Depends on:** raw.Stores  
