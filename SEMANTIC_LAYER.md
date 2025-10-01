@@ -72,6 +72,11 @@
 - open_date (date)
 - square_meters (smallint, nullable)
 
+### Build log — stage.v_stores
+- Compiled: ✅
+- Columns: store_key, state, country, open_date, square_meters
+- Row count: 67 | Distinct store_key: 67
+
 ### stage.v_exchange_rates
 **Grain:** one row per (currency, date)  
 **Depends on:** raw.Exchange_Rates  
