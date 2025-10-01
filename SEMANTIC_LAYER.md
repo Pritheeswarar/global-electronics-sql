@@ -163,8 +163,8 @@
 
 - Compiled: ✅
 - Columns: order_date, country, state, category, orders, units_sold, revenue_usd, active_skus
-- Rows: (pending execution)
-- Spot check (orders_src vs orders_rollup for a random day): (pending)
+- Rows: 45807
+- Spot check (orders_src vs orders_rollup for random day 2021-02-20): Not equal (orders_src=47, orders_rollup=21)  -- INVESTIGATE
 
  
 ### marts.v_delivery_stats_geo_monthly
@@ -185,7 +185,7 @@
 
 - Compiled: ✅
 - Columns: order_month, country, state, delivered_lines, avg_delivery_days, p90_delivery_days
-- Spot check (random month <picked_month>): (pending) (src=, rollup=)
+- Spot check (random month 2019-05-01): Not equal (src=503, rollup=104)  -- INVESTIGATE
 
  
 ### marts.v_top_products_monthly
