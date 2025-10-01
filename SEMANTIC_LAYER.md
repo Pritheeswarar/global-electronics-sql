@@ -181,6 +181,12 @@
 - p90_delivery_days (approx_percentile or window method; if not available, use PERCENTILE_CONT)
 **Filters:** delivery_date is not null.
 
+### Build log — marts.v_delivery_stats_geo_monthly
+
+- Compiled: ✅
+- Columns: order_month, country, state, delivered_lines, avg_delivery_days, p90_delivery_days
+- Spot check (random month <picked_month>): (pending) (src=, rollup=)
+
  
 ### marts.v_top_products_monthly
 
