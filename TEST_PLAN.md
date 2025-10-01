@@ -136,3 +136,12 @@ Profile recap: 5 distinct currencies; dates 2015-01-01 → 2021-02-20; exchange 
 | raw.Sales | Uniqueness: (Order_Number, Line_Item) | PASS | 0 |  |
 | raw.Stores | Uniqueness: (StoreKey) | PASS | 0 |  |
 
+## Run log — FK orphan checks
+
+| scope | test_name | status | fail_count | sample_offenders |
+|-------|-----------|--------|------------|------------------|
+| raw.Sales | Coverage: Sales.(Currency_Code, Order_Date) -> Exchange_Rates.(Currency, Date) | PASS | 0 |  |
+| raw.Sales | FK: Sales.CustomerKey -> Customers.CustomerKey | PASS | 0 |  |
+| raw.Sales | FK: Sales.ProductKey -> Products.ProductKey | PASS | 0 |  |
+| raw.Sales | FK: Sales.StoreKey -> Stores.StoreKey | PASS | 0 |  |
+
