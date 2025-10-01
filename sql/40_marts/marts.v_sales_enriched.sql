@@ -7,7 +7,7 @@ Purpose: Enrich line-level sales with product & store attributes and compute lin
 Contract Columns (exact order):
 	order_number, line_item, order_date, delivery_date,
 	customer_key, product_key, store_key, quantity, currency_code,
-	product_name, brand, category, subcategory, unit_price_usd,
+	product_name, brand, category, subcategory,
 	state, country,
 	line_revenue_usd
 Rules:
@@ -31,13 +31,12 @@ AS
     p.brand,
     p.category,
     p.subcategory,
-    p.unit_price_usd,
     st.state,
     st.country,
-    line_revenue_usd = CAST(sl.quantity * p.unit_price_usd AS money)
-  FROM stage.v_sales_lines sl
-    INNER JOIN stage.v_products p ON p.product_key = sl.product_key
-    INNER JOIN stage.v_stores   st ON st.store_key   = sl.store_key;
+    line_revenue_usd = CAST(sl.quantity * p.unit_price_usd AS decimal(18, 2))
+  FROM stage.v_sales_lines AS sl
+    INNER JOIN stage.v_products AS p ON p.product_key = sl.product_key
+    INNER JOIN stage.v_stores   AS st ON st.store_key   = sl.store_key;
 GO
 
 -- Post-create sanity checks
@@ -48,4 +47,3 @@ SELECT COUNT_BIG(*) AS rows_enriched
 FROM marts.v_sales_enriched;
 SELECT COUNT_BIG(*) AS rows_stage_sales
 FROM stage.v_sales_lines; -- Expect match
-

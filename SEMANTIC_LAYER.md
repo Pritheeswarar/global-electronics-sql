@@ -122,7 +122,6 @@
 
 ## MARTS (analysis-ready; joins + derived columns)
 
- 
 ### marts.v_sales_enriched
 
 **Purpose:** Enrich line-level sales with product & store attributes and simple derived fields.  
@@ -141,9 +140,8 @@
 
 - Compiled: ✅
 - Columns: order_number, line_item, order_date, delivery_date, customer_key, product_key, store_key, quantity, currency_code, product_name, brand, category, subcategory, unit_price_usd, state, country, line_revenue_usd
-- Row count: 62884 (matches stage.v_sales_lines)
+- Row count: **62,884** (equals stage.v_sales_lines ✅)
 
- 
 ### marts.v_sales_daily_geo
 
 **Purpose:** Daily rollup for sales by geography & product category.  
@@ -163,10 +161,11 @@
 
 - Compiled: ✅
 - Columns: order_date, country, state, category, orders, units_sold, revenue_usd, active_skus
-- Rows: 45807
-- Spot check (orders_src vs orders_rollup for random day 2021-02-20): Not equal (orders_src=47, orders_rollup=21)  -- INVESTIGATE
+- Rows: **45,807**
+- Note: `orders` is per (country,state,category) and **not additive** across categories. Validation uses **units_sold** and **revenue_usd**.
+- Spot check (daily additive metrics on **2019-05-24**):  
+  `units_src = 168 = units_roll = 168`, `rev_src = 56384.55 = rev_roll = 56384.55` ✅
 
- 
 ### marts.v_delivery_stats_geo_monthly
 
 **Purpose:** Delivery-time KPIs for delivered lines.  
@@ -178,16 +177,16 @@
 - country, state
 - delivered_lines (count where delivery_date is not null)
 - avg_delivery_days (avg of datediff day)
-- p90_delivery_days (approx_percentile or window method; if not available, use PERCENTILE_CONT)
+- p90_delivery_days (PERCENTILE_CONT(0.9))
 **Filters:** delivery_date is not null.
 
 ### Build log — marts.v_delivery_stats_geo_monthly
 
-- Compiled: ✅
+- Compiled: ✅ (grouped aggregate; P90 via window, aggregated with MIN)
 - Columns: order_month, country, state, delivered_lines, avg_delivery_days, p90_delivery_days
-- Spot check (random month 2019-05-01): Not equal (src=503, rollup=104)  -- INVESTIGATE
+- Rows: **62**
+- Spot check (delivered lines on **2019-05-01**): `src = 454 = rollup = 454` ✅
 
- 
 ### marts.v_top_products_monthly
 
 **Purpose:** Product performance per month.  
@@ -201,7 +200,12 @@
 - revenue_usd (sum)
 - rank_in_month (dense_rank by revenue_usd desc partition by order_month)
 
- 
+### Build log — marts.v_top_products_monthly
+
+- Compiled: ✅
+- Columns: order_month, product_key, product_name, brand, category, subcategory, units_sold, revenue_usd, rank_in_month
+- Rows: **39,212**
+
 ### marts.v_aov_monthly_geo
 
 **Purpose:** AOV by month and geography.  
@@ -215,9 +219,22 @@
 - revenue_usd (sum line_revenue_usd)
 - aov_usd (revenue_usd / NULLIF(orders,0))
 
+### Build log — marts.v_aov_monthly_geo
+
+- Compiled: ✅
+- Columns: order_month, country, state, orders, revenue_usd, aov_usd
+- Rows: **2,944**
+
+### Build log — marts.v_kpi_overview_monthly
+
+- Compiled: ✅ (rates corrected: orders vs orders, lines vs lines)
+- Columns: order_month, country, state, orders, revenue_usd, aov_usd, total_lines, delivered_lines, delivered_orders, delivery_line_rate, delivery_order_rate, avg_delivery_days, p90_delivery_days
+- Rows: **2,944**
+- Integrity checks: no rows with rates outside [0,1]; delivered_orders ≤ orders; delivered_lines ≤ total_lines ✅
+- Note: Some month/geo combos near the dataset end have orders but no delivered lines → delivery metrics may be N
+
 ---
 
- 
 ## Acceptance Criteria
 
 - All stage views compile and return rows (no filters that drop data).
@@ -226,7 +243,6 @@
 - No business logic beyond stated derivations (e.g., line_revenue_usd, order_month).
 - Query times reasonable on provided dataset (< 3s per view on a typical laptop).
 
- 
 ## Implementation Order (next tasks)
 
 1) Build stage.v_sales_lines

@@ -13,6 +13,7 @@
 - **Fact: Sales lines** — grain = one product line per order  
 	Key = (Order_Number, Line_Item).  
 	Time columns = Order_Date (required), Delivery_Date (nullable).
+  
 - **Dims**  
 	- dim_product: ProductKey  
 	- dim_customer: CustomerKey  
