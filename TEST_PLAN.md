@@ -145,3 +145,16 @@ Profile recap: 5 distinct currencies; dates 2015-01-01 → 2021-02-20; exchange 
 | raw.Sales | FK: Sales.ProductKey -> Products.ProductKey | PASS | 0 |  |
 | raw.Sales | FK: Sales.StoreKey -> Stores.StoreKey | PASS | 0 |  |
 
+## Run log — Values & reasonableness checks
+
+| scope | test_name | status | fail_count | sample_offenders |
+|-------|-----------|--------|------------|------------------|
+| raw.Sales | Accepted Values (Major): Sales.Currency_Code in Exchange_Rates | PASS | 0 |  |
+| raw.Sales | Bounds (Major): Sales.Quantity BETWEEN 1 AND 10 | PASS | 0 |  |
+| raw.Sales | Format (Major): Sales.Currency_Code LEN=3 & NOT NULL | PASS | 0 |  |
+| raw.Products | Non-Negative (Major): Products.Unit_Cost_USD >= 0 OR NULL | PASS | 0 |  |
+| raw.Products | Non-Negative (Major): Products.Unit_Price_USD >= 0 | PASS | 0 |  |
+| raw.Stores | Positive (Major): Stores.Square_Meters > 0 OR NULL | PASS | 0 |  |
+| raw.Products | Relation (Minor): Unit_Price_USD >= Unit_Cost_USD | PASS | 0 |  |
+| raw.Sales | Temporal (Major): Delivery_Date >= Order_Date | PASS | 0 |  |
+
