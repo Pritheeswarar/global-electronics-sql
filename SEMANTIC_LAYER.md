@@ -141,7 +141,7 @@
 
 - Compiled: ✅
 - Columns: order_number, line_item, order_date, delivery_date, customer_key, product_key, store_key, quantity, currency_code, product_name, brand, category, subcategory, unit_price_usd, state, country, line_revenue_usd
-- Row count: (pending execution) — should equal stage.v_sales_lines (62,884)
+- Row count: 62884 (matches stage.v_sales_lines)
 
  
 ### marts.v_sales_daily_geo
@@ -158,6 +158,13 @@
 - units_sold (sum quantity)
 - revenue_usd (sum line_revenue_usd)
 - active_skus (count distinct product_key)
+
+### Build log — marts.v_sales_daily_geo
+
+- Compiled: ✅
+- Columns: order_date, country, state, category, orders, units_sold, revenue_usd, active_skus
+- Rows: (pending execution)
+- Spot check (orders_src vs orders_rollup for a random day): (pending)
 
  
 ### marts.v_delivery_stats_geo_monthly
