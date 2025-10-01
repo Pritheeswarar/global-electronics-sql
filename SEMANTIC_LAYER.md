@@ -45,6 +45,11 @@
 - unit_cost_usd (money, nullable)
 **Rules:** direct rename/cast only.
 
+### Build log — stage.v_products
+- Compiled: ✅
+- Columns: product_key, product_name, brand, category, subcategory, unit_price_usd, unit_cost_usd
+- Row count: 2517 | Distinct product_key: 2517
+
 ### stage.v_customers
 **Grain:** one row per customer  
 **Depends on:** raw.Customers  
